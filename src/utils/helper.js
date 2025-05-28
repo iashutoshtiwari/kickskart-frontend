@@ -1,6 +1,6 @@
 export const getApiUrl = () =>
   //TODO: Modify this method to support environment variables
-  'https://kickskart-backend.onrender.com'
+  'https://api.kickskart.ashutoshtiwari.co.in'
 
 export const getAuthToken = () => {
   return localStorage.getItem('token')
