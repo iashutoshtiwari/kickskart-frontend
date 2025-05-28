@@ -1,0 +1,33 @@
+@import "../../styles/styles.scss";
+
+.container {
+  margin-top: 80px;
+  min-height: 100vh;
+  background: #ffffff;
+  position: relative;
+
+  .product-filter-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    @include breakpoint(lg) {
+      flex-direction: row;
+    }
+
+    .filter-container {
+      display: flex;
+      justify-content: flex-end;
+      padding: 16px;
+      @include breakpoint(xs) {
+        align-items: center;
+      }
+    }
+
+    .product-container {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+    }
+  }
+}

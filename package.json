@@ -1,0 +1,41 @@
+{
+  "name": "sneaker-store",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/bebas-neue": "^5.0.3",
+    "@fontsource/roboto": "^5.0.3",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.4",
+    "@mui/styled-engine-sc": "^5.12.0",
+    "axios": "^1.4.0",
+    "eslint": "8.42.0",
+    "eslint-config-next": "13.4.4",
+    "next": "13.4.4",
+    "next-redux-wrapper": "^8.1.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-redux": "^8.0.7",
+    "react-slick": "^0.29.0",
+    "react-zoom-pan-pinch": "^3.0.8",
+    "redux": "^4.2.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.2",
+    "sass": "^1.63.3",
+    "slick-carousel": "^1.8.1",
+    "styled-components": "^5.3.11",
+    "universal-cookie": "^4.0.4",
+    "window-or-global": "^1.0.1"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^8.0.1"
+  }
+}

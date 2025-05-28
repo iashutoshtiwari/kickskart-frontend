@@ -1,0 +1,51 @@
+//Fonts
+$font-primary: "Roboto", sans-serif;
+$font-secondary: "Inconsolata", monospace;
+$font-tertiary: "Jost";
+$font-heading: "Bebas Neue", sans-serif;
+
+// !Breakpoints
+// Small tablets and large smartphones (landscape view)
+$breakpoint_xs: 576px;
+
+// Small tablets (portrait view)
+$breakpoint_sm: 768px;
+
+// Tablets and small desktops
+$breakpoint_md: 992px;
+
+// Large tablets and desktops
+$breakpoint_lg: 1200px;
+
+@mixin breakpoint($size) {
+  // Extra Small devices
+  @if $size==xs {
+    @media all and (max-width: ($breakpoint_xs - 1)) {
+      @content;
+    }
+
+    //Small devices
+  } @else if $size==sm {
+    @media all and (min-width: $breakpoint_xs) {
+      @content;
+    }
+
+    // Medium devices
+  } @else if $size==md {
+    @media all and (min-width: $breakpoint_sm) {
+      @content;
+    }
+
+    // Large devices
+  } @else if $size==lg {
+    @media all and (min-width: $breakpoint_md) {
+      @content;
+    }
+
+    // Extra Large devices
+  } @else if $size==xl {
+    @media all and (min-width: $breakpoint_lg) {
+      @content;
+    }
+  }
+}

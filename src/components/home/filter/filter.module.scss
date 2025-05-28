@@ -1,0 +1,19 @@
+@import "../../../styles/styles.scss";
+
+.sortby-filter {
+  min-width: 240px;
+  padding: 12px;
+
+  @include breakpoint(lg) {
+    height: fit-content;
+    background: #f6f6f6;
+    border-radius: 12px;
+  }
+
+  .sortby {
+    margin-top: 12px;
+  }
+  .filter {
+    margin-top: 12px;
+  }
+}
