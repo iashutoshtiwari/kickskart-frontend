@@ -1,112 +1,124 @@
-"use client"
+'use client';
 
-import type React from "react"
+import type React from 'react';
 
-import { useState } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import { useRouter } from "next/navigation"
-import type { RootState } from "../store/store"
-import { clearCart } from "../store/cartSlice"
-import Header from "../components/Header"
-import Footer from "../components/Footer"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/navigation';
+import type { RootState } from '../store/store';
+import { clearCart } from '../store/cartSlice';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function CheckoutPage() {
-  const router = useRouter()
-  const dispatch = useDispatch()
-  const { items, total } = useSelector((state: RootState) => state.cart)
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const { items, total } = useSelector((state: RootState) => state.cart);
 
   const [shippingAddress, setShippingAddress] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    address: "",
-    city: "",
-    state: "",
-    zipCode: "",
-  })
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    address: '',
+    city: '',
+    state: '',
+    zipCode: '',
+  });
 
-  const [paymentMethod, setPaymentMethod] = useState("credit-card")
+  const [paymentMethod, setPaymentMethod] = useState('credit-card');
   const [cardDetails, setCardDetails] = useState({
-    cardNumber: "",
-    expiryDate: "",
-    cvv: "",
-    cardName: "",
-  })
+    cardNumber: '',
+    expiryDate: '',
+    cvv: '',
+    cardName: '',
+  });
 
-  const shipping = 10
-  const tax = total * 0.08
-  const finalTotal = total + shipping + tax
+  const shipping = 10;
+  const tax = total * 0.08;
+  const finalTotal = total + shipping + tax;
 
   const handleInputChange = (field: string, value: string) => {
-    setShippingAddress((prev) => ({ ...prev, [field]: value }))
-  }
+    setShippingAddress((prev) => ({ ...prev, [field]: value }));
+  };
 
   const handleCardInputChange = (field: string, value: string) => {
-    setCardDetails((prev) => ({ ...prev, [field]: value }))
-  }
+    setCardDetails((prev) => ({ ...prev, [field]: value }));
+  };
 
   const handlePlaceOrder = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     // Basic validation
-    const requiredFields = ["firstName", "lastName", "email", "address", "city", "state", "zipCode"]
-    const missingFields = requiredFields.filter((field) => !shippingAddress[field as keyof typeof shippingAddress])
+    const requiredFields = [
+      'firstName',
+      'lastName',
+      'email',
+      'address',
+      'city',
+      'state',
+      'zipCode',
+    ];
+    const missingFields = requiredFields.filter(
+      (field) => !shippingAddress[field as keyof typeof shippingAddress],
+    );
 
     if (missingFields.length > 0) {
-      alert("Please fill in all required fields")
-      return
+      alert('Please fill in all required fields');
+      return;
     }
 
-    if (paymentMethod === "credit-card") {
-      const requiredCardFields = ["cardNumber", "expiryDate", "cvv", "cardName"]
-      const missingCardFields = requiredCardFields.filter((field) => !cardDetails[field as keyof typeof cardDetails])
+    if (paymentMethod === 'credit-card') {
+      const requiredCardFields = ['cardNumber', 'expiryDate', 'cvv', 'cardName'];
+      const missingCardFields = requiredCardFields.filter(
+        (field) => !cardDetails[field as keyof typeof cardDetails],
+      );
 
       if (missingCardFields.length > 0) {
-        alert("Please fill in all card details")
-        return
+        alert('Please fill in all card details');
+        return;
       }
     }
 
     // Simulate order processing
-    const orderId = Math.random().toString(36).substr(2, 9).toUpperCase()
+    const orderId = Math.random().toString(36).substr(2, 9).toUpperCase();
 
     // Clear cart and redirect to confirmation
-    dispatch(clearCart())
-    router.push(`/order-confirmation?orderId=${orderId}&total=${finalTotal.toFixed(2)}`)
-  }
+    dispatch(clearCart());
+    router.push(`/order-confirmation?orderId=${orderId}&total=${finalTotal.toFixed(2)}`);
+  };
 
   if (items.length === 0) {
     return (
       <div className="min-h-screen bg-white">
         <Header />
-        <main className="max-w-7xl mx-auto px-4 py-12">
+        <main className="mx-auto max-w-7xl px-4 py-12">
           <div className="text-center">
-            <h1 className="text-3xl font-bold mb-4">Your Cart is Empty</h1>
-            <p className="text-gray-600 mb-8">Add some items to proceed to checkout</p>
-            <Button onClick={() => router.push("/")}>Continue Shopping</Button>
+            <h1 className="mb-4 text-3xl font-bold">Your Cart is Empty</h1>
+            <p className="mb-8 text-gray-600">Add some items to proceed to checkout</p>
+            <Button onClick={() => router.push('/')}>Continue Shopping</Button>
           </div>
         </main>
         <Footer />
       </div>
-    )
+    );
   }
 
   return (
     <div className="min-h-screen bg-white">
       <Header />
 
-      <main className="max-w-7xl mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-8">Checkout</h1>
+      <main className="mx-auto max-w-7xl px-4 py-8">
+        <h1 className="mb-8 text-3xl font-bold">Checkout</h1>
 
         <form onSubmit={handlePlaceOrder}>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             {/* Checkout Form */}
             <div className="space-y-8">
               {/* Shipping Address */}
@@ -121,7 +133,7 @@ export default function CheckoutPage() {
                       <Input
                         id="firstName"
                         value={shippingAddress.firstName}
-                        onChange={(e) => handleInputChange("firstName", e.target.value)}
+                        onChange={(e) => handleInputChange('firstName', e.target.value)}
                         required
                       />
                     </div>
@@ -130,7 +142,7 @@ export default function CheckoutPage() {
                       <Input
                         id="lastName"
                         value={shippingAddress.lastName}
-                        onChange={(e) => handleInputChange("lastName", e.target.value)}
+                        onChange={(e) => handleInputChange('lastName', e.target.value)}
                         required
                       />
                     </div>
@@ -142,7 +154,7 @@ export default function CheckoutPage() {
                       id="email"
                       type="email"
                       value={shippingAddress.email}
-                      onChange={(e) => handleInputChange("email", e.target.value)}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
                       required
                     />
                   </div>
@@ -153,7 +165,7 @@ export default function CheckoutPage() {
                       id="phone"
                       type="tel"
                       value={shippingAddress.phone}
-                      onChange={(e) => handleInputChange("phone", e.target.value)}
+                      onChange={(e) => handleInputChange('phone', e.target.value)}
                     />
                   </div>
 
@@ -162,7 +174,7 @@ export default function CheckoutPage() {
                     <Input
                       id="address"
                       value={shippingAddress.address}
-                      onChange={(e) => handleInputChange("address", e.target.value)}
+                      onChange={(e) => handleInputChange('address', e.target.value)}
                       required
                     />
                   </div>
@@ -173,7 +185,7 @@ export default function CheckoutPage() {
                       <Input
                         id="city"
                         value={shippingAddress.city}
-                        onChange={(e) => handleInputChange("city", e.target.value)}
+                        onChange={(e) => handleInputChange('city', e.target.value)}
                         required
                       />
                     </div>
@@ -182,7 +194,7 @@ export default function CheckoutPage() {
                       <Input
                         id="state"
                         value={shippingAddress.state}
-                        onChange={(e) => handleInputChange("state", e.target.value)}
+                        onChange={(e) => handleInputChange('state', e.target.value)}
                         required
                       />
                     </div>
@@ -193,7 +205,7 @@ export default function CheckoutPage() {
                     <Input
                       id="zipCode"
                       value={shippingAddress.zipCode}
-                      onChange={(e) => handleInputChange("zipCode", e.target.value)}
+                      onChange={(e) => handleInputChange('zipCode', e.target.value)}
                       required
                     />
                   </div>
@@ -221,14 +233,14 @@ export default function CheckoutPage() {
                     </div>
                   </RadioGroup>
 
-                  {paymentMethod === "credit-card" && (
+                  {paymentMethod === 'credit-card' && (
                     <div className="mt-6 space-y-4">
                       <div>
                         <Label htmlFor="cardName">Name on Card *</Label>
                         <Input
                           id="cardName"
                           value={cardDetails.cardName}
-                          onChange={(e) => handleCardInputChange("cardName", e.target.value)}
+                          onChange={(e) => handleCardInputChange('cardName', e.target.value)}
                           required
                         />
                       </div>
@@ -238,7 +250,7 @@ export default function CheckoutPage() {
                           id="cardNumber"
                           placeholder="1234 5678 9012 3456"
                           value={cardDetails.cardNumber}
-                          onChange={(e) => handleCardInputChange("cardNumber", e.target.value)}
+                          onChange={(e) => handleCardInputChange('cardNumber', e.target.value)}
                           required
                         />
                       </div>
@@ -249,7 +261,7 @@ export default function CheckoutPage() {
                             id="expiryDate"
                             placeholder="MM/YY"
                             value={cardDetails.expiryDate}
-                            onChange={(e) => handleCardInputChange("expiryDate", e.target.value)}
+                            onChange={(e) => handleCardInputChange('expiryDate', e.target.value)}
                             required
                           />
                         </div>
@@ -259,7 +271,7 @@ export default function CheckoutPage() {
                             id="cvv"
                             placeholder="123"
                             value={cardDetails.cvv}
-                            onChange={(e) => handleCardInputChange("cvv", e.target.value)}
+                            onChange={(e) => handleCardInputChange('cvv', e.target.value)}
                             required
                           />
                         </div>
@@ -267,13 +279,15 @@ export default function CheckoutPage() {
                     </div>
                   )}
 
-                  {paymentMethod === "upi" && (
+                  {paymentMethod === 'upi' && (
                     <div className="mt-6">
-                      <p className="text-gray-600">You will be redirected to your UPI app to complete the payment.</p>
+                      <p className="text-gray-600">
+                        You will be redirected to your UPI app to complete the payment.
+                      </p>
                     </div>
                   )}
 
-                  {paymentMethod === "cod" && (
+                  {paymentMethod === 'cod' && (
                     <div className="mt-6">
                       <p className="text-gray-600">Pay with cash when your order is delivered.</p>
                     </div>
@@ -290,19 +304,24 @@ export default function CheckoutPage() {
                 </CardHeader>
                 <CardContent>
                   {/* Order Items */}
-                  <div className="space-y-4 mb-6">
+                  <div className="mb-6 space-y-4">
                     {items.map((item) => (
                       <div key={`${item.id}-${item.size}`} className="flex gap-3">
-                        <div className="relative w-16 h-16 bg-gray-100 rounded overflow-hidden flex-shrink-0">
-                          <Image src={item.image || "/placeholder.svg"} alt={item.name} fill className="object-cover" />
+                        <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded bg-gray-100">
+                          <Image
+                            src={item.image || '/placeholder.svg'}
+                            alt={item.name}
+                            fill
+                            className="object-cover"
+                          />
                         </div>
-                        <div className="flex-1 min-w-0">
-                          <h4 className="font-medium text-sm">{item.name}</h4>
-                          <p className="text-gray-600 text-xs">Size: {item.size}</p>
-                          <p className="text-gray-600 text-xs">Qty: {item.quantity}</p>
+                        <div className="min-w-0 flex-1">
+                          <h4 className="text-sm font-medium">{item.name}</h4>
+                          <p className="text-xs text-gray-600">Size: {item.size}</p>
+                          <p className="text-xs text-gray-600">Qty: {item.quantity}</p>
                         </div>
                         <div className="text-right">
-                          <p className="font-medium">${(item.price * item.quantity).toFixed(2)}</p>
+                          <p className="font-medium">₹{(item.price * item.quantity).toFixed(2)}</p>
                         </div>
                       </div>
                     ))}
@@ -312,25 +331,28 @@ export default function CheckoutPage() {
                   <div className="space-y-2 border-t pt-4">
                     <div className="flex justify-between">
                       <span>Subtotal</span>
-                      <span>${total.toFixed(2)}</span>
+                      <span>₹{total.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Shipping</span>
-                      <span>${shipping.toFixed(2)}</span>
+                      <span>₹{shipping.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Tax</span>
-                      <span>${tax.toFixed(2)}</span>
+                      <span>₹{tax.toFixed(2)}</span>
                     </div>
                     <div className="border-t pt-2">
-                      <div className="flex justify-between font-bold text-lg">
+                      <div className="flex justify-between text-lg font-bold">
                         <span>Total</span>
-                        <span>${finalTotal.toFixed(2)}</span>
+                        <span>₹{finalTotal.toFixed(2)}</span>
                       </div>
                     </div>
                   </div>
 
-                  <Button type="submit" className="w-full mt-6 bg-black hover:bg-gray-800 text-white py-3">
+                  <Button
+                    type="submit"
+                    className="mt-6 w-full bg-black py-3 text-white hover:bg-gray-800"
+                  >
                     Place Order
                   </Button>
                 </CardContent>
@@ -342,5 +364,5 @@ export default function CheckoutPage() {
 
       <Footer />
     </div>
-  )
+  );
 }
