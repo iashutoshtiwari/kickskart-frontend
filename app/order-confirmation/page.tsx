@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { CheckCircle, XCircle } from 'lucide-react';
 import { useDispatch } from 'react-redux';
 import { clearCart } from '../store/cartSlice';
+import { formatINR } from '@/lib/utils';
 
 export default function OrderConfirmationPage() {
   const searchParams = useSearchParams();
@@ -82,7 +83,7 @@ export default function OrderConfirmationPage() {
             Order ID: <span className="font-mono font-bold">{orderId}</span>
           </p>
           <p className="text-gray-600">
-            Total: <span className="font-bold">₹{total}</span>
+            Total: <span className="font-bold">{formatINR(total ?? '0')}</span>
           </p>
           <p className="mt-2 text-sm text-gray-600">
             You will receive a confirmation email shortly with tracking information.
