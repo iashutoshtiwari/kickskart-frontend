@@ -22,7 +22,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           />
         </div>
         <div className="flex flex-1 flex-col p-4">
-          <h3 className="mb-1 line-clamp-2 flex-1 text-lg font-semibold transition-colors group-hover:text-gray-600">
+          <h3 className="md:text-md mb-1 line-clamp-2 flex-1 font-semibold transition-colors group-hover:text-gray-600 lg:text-lg">
             {product.name}
           </h3>
           <p className="mb-2 text-sm text-gray-500">{product.category}</p>
