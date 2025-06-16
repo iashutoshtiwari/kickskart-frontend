@@ -311,7 +311,9 @@ export default function CheckoutPage() {
                         <p className="text-xs text-gray-600">Qty: {item.quantity}</p>
                       </div>
                       <div className="text-right">
-                        <p className="font-medium">₹{(item.price * item.quantity).toFixed(2)}</p>
+                        <p className="font-grotesk font-medium">
+                          {formatINR(item.price * item.quantity)}
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -321,20 +323,20 @@ export default function CheckoutPage() {
                 <div className="space-y-2 border-t pt-4">
                   <div className="flex justify-between">
                     <span>Subtotal</span>
-                    <span>{formatINR(subTotal)}</span>
+                    <span className="font-grotesk">{formatINR(subTotal)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Shipping</span>
-                    <span>{formatINR(shipping)}</span>
+                    <span className="font-grotesk">{formatINR(shipping)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>GST</span>
-                    <span>{formatINR(tax)}</span>
+                    <span className="font-grotesk">{formatINR(tax)}</span>
                   </div>
                   <div className="border-t pt-2">
                     <div className="flex justify-between text-lg font-bold">
                       <span>Total</span>
-                      <span>{formatINR(finalTotal)}</span>
+                      <span className="font-grotesk">{formatINR(finalTotal)}</span>
                     </div>
                   </div>
                 </div>

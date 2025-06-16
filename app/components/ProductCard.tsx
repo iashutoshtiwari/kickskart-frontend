@@ -26,7 +26,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             {product.name}
           </h3>
           <p className="mb-2 text-sm text-gray-500">{product.category}</p>
-          <p className="text-lg font-bold">{formatINR(product.price, false)}</p>
+          <p className="font-grotesk text-lg font-bold">{formatINR(product.price, false)}</p>
         </div>
       </div>
     </Link>

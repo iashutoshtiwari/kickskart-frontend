@@ -47,7 +47,7 @@ export default function Header() {
     <>
       <header className="sticky top-0 z-50 border-b border-gray-200 bg-white">
         {/* Top bar */}
-        <div className="bg-gray-100 px-4 py-2 text-center text-xs">
+        <div className="font-grotesk bg-gray-100 px-4 py-2 text-center text-xs">
           <span>{`Free shipping on orders over ${formatINR(10000, false)}`}</span>
         </div>
 

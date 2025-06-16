@@ -134,9 +134,8 @@ export default function ProductPage() {
           <div>
             <h1 className="mb-2 text-3xl font-bold">{product.name}</h1>
             <p className="mb-4 text-gray-600">{product.category}</p>
-            <p className="text-3xl font-bold">{formatINR(product.price, false)}</p>
+            <p className="font-grotesk text-3xl font-bold">{formatINR(product.price, false)}</p>
           </div>
-
           <div>
             <p className="leading-relaxed text-gray-700">{product.description}</p>
           </div>
@@ -144,7 +143,7 @@ export default function ProductPage() {
           {/* Size Selection */}
           <div>
             <h3 className="mb-3 font-semibold">Select Size</h3>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="font-grotesk grid grid-cols-3 gap-3">
               {product.sizes.map((size) => (
                 <button
                   key={size}
@@ -164,7 +163,7 @@ export default function ProductPage() {
           {/* Quantity Selection */}
           <div>
             <h3 className="mb-3 font-semibold">Quantity</h3>
-            <div className="flex items-center gap-4">
+            <div className="font-grotesk flex items-center gap-4">
               <button
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
                 className="rounded-lg border p-2 transition-colors hover:bg-gray-100"

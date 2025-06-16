@@ -72,7 +72,7 @@ export default function CartPage() {
 
                 {/* Mobile layout */}
                 <div className="mt-auto flex items-end justify-between md:hidden">
-                  <p className="font-bold">{formatINR(item.price * item.quantity)}</p>
+                  <p className="font-grotesk font-bold">{formatINR(item.price * item.quantity)}</p>
 
                   {/* Quantity controls - bottom right */}
                   <div className="flex items-center gap-2">
@@ -82,7 +82,7 @@ export default function CartPage() {
                     >
                       <Minus className="h-4 w-4" />
                     </button>
-                    <span className="w-8 text-center">{item.quantity}</span>
+                    <span className="font-grotesk w-8 text-center">{item.quantity}</span>
                     <button
                       onClick={() => handleQuantityChange(item.id, item.size, item.quantity + 1)}
                       className="rounded border p-1 transition-colors hover:bg-gray-100"
@@ -93,7 +93,7 @@ export default function CartPage() {
                 </div>
 
                 {/* Desktop: Show individual price */}
-                <p className="hidden font-bold md:block">{formatINR(item.price)}</p>
+                <p className="font-grotesk hidden font-bold md:block">{formatINR(item.price)}</p>
               </div>
 
               {/* Mobile remove button - top right */}
@@ -114,7 +114,7 @@ export default function CartPage() {
                   >
                     <Minus className="h-4 w-4" />
                   </button>
-                  <span className="w-8 text-center">{item.quantity}</span>
+                  <span className="font-grotesk w-8 text-center">{item.quantity}</span>
                   <button
                     onClick={() => handleQuantityChange(item.id, item.size, item.quantity + 1)}
                     className="rounded border p-1 transition-colors hover:bg-gray-100"
@@ -132,7 +132,7 @@ export default function CartPage() {
                 </button>
 
                 {/* Item Total */}
-                <p className="font-bold">{formatINR(item.price * item.quantity)}</p>
+                <p className="font-grotesk font-bold">{formatINR(item.price * item.quantity)}</p>
               </div>
             </div>
           ))}
@@ -146,20 +146,20 @@ export default function CartPage() {
             <div className="mb-4 space-y-3">
               <div className="flex justify-between">
                 <span>Subtotal</span>
-                <span>{formatINR(subTotal)}</span>
+                <span className="font-grotesk">{formatINR(subTotal)}</span>
               </div>
               <div className="flex justify-between">
                 <span>Shipping</span>
-                <span>{formatINR(shipping)}</span>
+                <span className="font-grotesk">{formatINR(shipping)}</span>
               </div>
               <div className="flex justify-between">
                 <span>GST</span>
-                <span>{formatINR(tax)}</span>
+                <span className="font-grotesk">{formatINR(tax)}</span>
               </div>
               <div className="border-t pt-3">
                 <div className="flex justify-between text-lg font-bold">
                   <span>Total</span>
-                  <span>{formatINR(finalTotal)}</span>
+                  <span className="font-grotesk">{formatINR(finalTotal)}</span>
                 </div>
               </div>
             </div>

@@ -77,7 +77,7 @@ export default function HeroCarousel() {
 
           {/* Slide Text Content */}
           <div className="absolute inset-0 flex items-center justify-center text-center text-white">
-            <div className="max-w-4xl px-4">
+            <div className="font-anton max-w-4xl px-4">
               <h1 className="mb-4 text-4xl font-bold md:text-6xl">{slide.title}</h1>
               <p className="mx-auto mb-8 max-w-2xl text-lg md:text-xl">{slide.subtitle}</p>
               <Button size="lg" className="bg-white px-8 py-3 text-lg text-black hover:bg-gray-200">
@@ -87,20 +87,6 @@ export default function HeroCarousel() {
           </div>
         </div>
       ))}
-
-      {/* Navigation Arrows */}
-      <button
-        onClick={prevSlide}
-        className="bg-opacity-20 hover:bg-opacity-30 absolute top-1/2 left-4 -translate-y-1/2 transform rounded-full bg-white p-2 transition-all"
-      >
-        <ChevronLeft className="h-6 w-6 text-black" />
-      </button>
-      <button
-        onClick={nextSlide}
-        className="bg-opacity-20 hover:bg-opacity-30 absolute top-1/2 right-4 -translate-y-1/2 transform rounded-full bg-white p-2 transition-all"
-      >
-        <ChevronRight className="h-6 w-6 text-black" />
-      </button>
 
       {/* Dots Indicator */}
       <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 transform space-x-2">
