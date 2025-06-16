@@ -52,8 +52,11 @@ export default function CartPage() {
         {/* Cart Items */}
         <div className="space-y-4 lg:col-span-2">
           {items.map((item) => (
-            <div key={`${item.id}-${item.size}`} className="flex gap-4 rounded-lg border p-4">
-              <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-lg bg-gray-100">
+            <div
+              key={`${item.id}-${item.size}`}
+              className="relative flex gap-4 rounded-lg border p-4"
+            >
+              <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg bg-gray-100">
                 <Image
                   src={item.image || '/placeholder.svg'}
                   alt={item.name}
@@ -62,14 +65,47 @@ export default function CartPage() {
                 />
               </div>
 
-              <div className="min-w-0 flex-1">
-                <h3 className="mb-1 text-lg font-semibold">{item.name}</h3>
+              <div className="flex min-w-0 flex-1 flex-col">
+                <h3 className="mb-1 truncate text-lg font-semibold">{item.name}</h3>
                 <p className="mb-2 text-gray-600">{item.category}</p>
                 <p className="mb-2 text-gray-600">Size: {item.size}</p>
-                <p className="font-bold">{formatINR(item.price)}</p>
+
+                {/* Mobile layout */}
+                <div className="mt-auto flex items-end justify-between md:hidden">
+                  <p className="font-bold">{formatINR(item.price * item.quantity)}</p>
+
+                  {/* Quantity controls - bottom right */}
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => handleQuantityChange(item.id, item.size, item.quantity - 1)}
+                      className="rounded border p-1 transition-colors hover:bg-gray-100"
+                    >
+                      <Minus className="h-4 w-4" />
+                    </button>
+                    <span className="w-8 text-center">{item.quantity}</span>
+                    <button
+                      onClick={() => handleQuantityChange(item.id, item.size, item.quantity + 1)}
+                      className="rounded border p-1 transition-colors hover:bg-gray-100"
+                    >
+                      <Plus className="h-4 w-4" />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Desktop: Show individual price */}
+                <p className="hidden font-bold md:block">{formatINR(item.price)}</p>
               </div>
 
-              <div className="flex flex-col items-end gap-4">
+              {/* Mobile remove button - top right */}
+              <button
+                onClick={() => handleRemoveItem(item.id, item.size)}
+                className="absolute top-4 right-4 rounded p-2 text-red-500 transition-colors hover:bg-red-50 md:hidden"
+              >
+                <Trash2 className="h-4 w-4" />
+              </button>
+
+              {/* Desktop controls - right side */}
+              <div className="hidden flex-col items-end gap-4 md:flex">
                 {/* Quantity Controls */}
                 <div className="flex items-center gap-2">
                   <button
