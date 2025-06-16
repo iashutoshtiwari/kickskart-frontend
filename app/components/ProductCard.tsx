@@ -25,7 +25,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             {product.name}
           </h3>
           <p className="mb-2 text-sm text-gray-500">{product.category}</p>
-          <p className="text-lg font-bold">${product.price}</p>
+          <p className="text-lg font-bold">₹{product.price}</p>
         </div>
       </div>
     </Link>

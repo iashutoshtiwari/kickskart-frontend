@@ -72,9 +72,9 @@ export default function ProductGrid() {
               <Button
                 variant={filterBy.priceRange[1] === 100 ? 'default' : 'outline'}
                 size="sm"
-                onClick={() => dispatch(setFilterBy({ priceRange: [0, 100] }))}
+                onClick={() => dispatch(setFilterBy({ priceRange: [0, 10000] }))}
               >
-                Under $100
+                Under ₹10k
               </Button>
               <Button
                 variant={
@@ -83,16 +83,16 @@ export default function ProductGrid() {
                     : 'outline'
                 }
                 size="sm"
-                onClick={() => dispatch(setFilterBy({ priceRange: [100, 200] }))}
+                onClick={() => dispatch(setFilterBy({ priceRange: [100, 20000] }))}
               >
-                $100-$200
+                ₹10k-₹20k
               </Button>
               <Button
-                variant={filterBy.priceRange[0] === 200 ? 'default' : 'outline'}
+                variant={filterBy.priceRange[0] === 20000 ? 'default' : 'outline'}
                 size="sm"
-                onClick={() => dispatch(setFilterBy({ priceRange: [200, 300] }))}
+                onClick={() => dispatch(setFilterBy({ priceRange: [20000, 30000] }))}
               >
-                $200+
+                ₹20k+
               </Button>
             </div>
           </div>
