@@ -9,6 +9,7 @@ import YouMayAlsoLike from '../../components/YouMayAlsoLike';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight, Minus, Plus } from 'lucide-react';
+import { formatINR } from '@/lib/utils';
 
 export default function ProductPage() {
   const params = useParams();
@@ -133,7 +134,7 @@ export default function ProductPage() {
           <div>
             <h1 className="mb-2 text-3xl font-bold">{product.name}</h1>
             <p className="mb-4 text-gray-600">{product.category}</p>
-            <p className="text-3xl font-bold">₹{product.price}</p>
+            <p className="text-3xl font-bold">{formatINR(product.price, false)}</p>
           </div>
 
           <div>
