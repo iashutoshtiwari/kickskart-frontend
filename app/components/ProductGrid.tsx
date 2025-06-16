@@ -18,7 +18,28 @@ export default function ProductGrid() {
   const { filteredProducts, sortBy, filterBy } = useSelector((state: RootState) => state.products);
 
   const categories = ['all', 'Running', 'Basketball', 'Lifestyle', 'Training'];
-  const sizes = ['all', '7', '8', '9', '10', '11', '12'];
+  const sizes = [
+    'all',
+    'UK 5',
+    'UK 5.5',
+    'UK 6',
+    'UK 6.5',
+    'UK 7',
+    'UK 7.5',
+    'UK 8',
+    'UK 8.5',
+    'UK 9',
+    'UK 9.5',
+    'UK 10',
+    'UK 10.5',
+    'UK 11',
+    'UK 11.5',
+    'UK 12',
+    'UK 12.5',
+    'UK 13',
+    'UK 13.5',
+    'UK 14',
+  ];
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8">
@@ -70,7 +91,7 @@ export default function ProductGrid() {
             <label className="text-sm font-medium">Price Range</label>
             <div className="flex gap-2">
               <Button
-                variant={filterBy.priceRange[1] === 100 ? 'default' : 'outline'}
+                variant={filterBy.priceRange[1] === 10000 ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => dispatch(setFilterBy({ priceRange: [0, 10000] }))}
               >
@@ -78,19 +99,19 @@ export default function ProductGrid() {
               </Button>
               <Button
                 variant={
-                  filterBy.priceRange[0] === 100 && filterBy.priceRange[1] === 200
+                  filterBy.priceRange[0] === 10000 && filterBy.priceRange[1] === 20000
                     ? 'default'
                     : 'outline'
                 }
                 size="sm"
-                onClick={() => dispatch(setFilterBy({ priceRange: [100, 20000] }))}
+                onClick={() => dispatch(setFilterBy({ priceRange: [10000, 20000] }))}
               >
                 ₹10k-₹20k
               </Button>
               <Button
                 variant={filterBy.priceRange[0] === 20000 ? 'default' : 'outline'}
                 size="sm"
-                onClick={() => dispatch(setFilterBy({ priceRange: [20000, 30000] }))}
+                onClick={() => dispatch(setFilterBy({ priceRange: [20000, 200000] }))}
               >
                 ₹20k+
               </Button>
@@ -136,7 +157,7 @@ export default function ProductGrid() {
             variant="outline"
             className="mt-4"
             onClick={() =>
-              dispatch(setFilterBy({ category: 'all', priceRange: [0, 300], size: 'all' }))
+              dispatch(setFilterBy({ category: 'all', priceRange: [0, 200000], size: 'all' }))
             }
           >
             Clear Filters

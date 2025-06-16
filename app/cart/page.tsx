@@ -66,9 +66,9 @@ export default function CartPage() {
               </div>
 
               <div className="flex min-w-0 flex-1 flex-col">
-                <h3 className="mb-1 truncate text-lg font-semibold">{item.name}</h3>
-                <p className="mb-2 text-gray-600">{item.category}</p>
-                <p className="mb-2 text-gray-600">Size: {item.size}</p>
+                <h3 className="text-md mb-1 flex-wrap truncate pr-12 font-semibold">{item.name}</h3>
+                <p className="mb-2 text-sm text-gray-600">{item.category}</p>
+                <p className="mb-2 text-sm text-gray-600">Size: {item.size}</p>
 
                 {/* Mobile layout */}
                 <div className="mt-auto flex items-end justify-between md:hidden">
