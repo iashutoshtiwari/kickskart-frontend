@@ -60,7 +60,7 @@ export default function CartPage() {
           <div className="space-y-4 lg:col-span-2">
             {items.map((item) => (
               <div key={`${item.id}-${item.size}`} className="flex gap-4 rounded-lg border p-4">
-                <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg bg-gray-100">
+                <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-lg bg-gray-100">
                   <Image
                     src={item.image || '/placeholder.svg'}
                     alt={item.name}

@@ -53,7 +53,7 @@ export default function Header() {
         <div className="px-4 py-4">
           <div className="mx-auto flex max-w-7xl items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="text-2xl font-bold">
+            <Link href="/" className="font-bebas text-4xl font-bold italic">
               KicksKart
             </Link>
 
@@ -81,7 +81,7 @@ export default function Header() {
               {/* Search - Desktop */}
               <form onSubmit={handleSearch} className="hidden items-center md:flex">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-gray-400" />
+                  <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform text-gray-400" />
                   <Input
                     type="text"
                     placeholder="Search"
@@ -107,7 +107,7 @@ export default function Header() {
                   >
                     <ShoppingBag className="h-5 w-5" />
                     {cartItemCount > 0 && (
-                      <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-black text-xs text-white">
+                      <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-black text-xs text-white">
                         {cartItemCount}
                       </span>
                     )}
@@ -135,7 +135,7 @@ export default function Header() {
               {/* Mobile Search */}
               <form onSubmit={handleSearch} className="flex items-center">
                 <div className="relative flex-1">
-                  <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-gray-400" />
+                  <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform text-gray-400" />
                   <Input
                     type="text"
                     placeholder="Search"

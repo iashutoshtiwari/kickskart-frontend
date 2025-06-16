@@ -10,7 +10,7 @@ const heroSlides = [
     id: 1,
     title: 'JUST DO IT',
     subtitle: 'Bring your game to the next level with our latest collection',
-    image: '/jordan.webp',
+    image: '/nike.webp',
     cta: 'Shop Now',
   },
   {
@@ -24,7 +24,7 @@ const heroSlides = [
     id: 3,
     title: 'STEP INTO GREATNESS',
     subtitle: 'Discover the perfect pair for every occasion',
-    image: '/nike.webp',
+    image: '/jordan.webp',
     cta: 'Shop Collection',
   },
 ];
@@ -61,14 +61,21 @@ export default function HeroCarousel() {
                 : 'translate-x-full'
           }`}
         >
-          <Image
-            src={slide.image || '/placeholder.svg'}
-            alt={slide.title}
-            fill
-            className="object-cover"
-            priority={index === 0}
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-40" />
+          {/* Fixed Image Wrapper */}
+          <div className="relative h-full w-full">
+            <Image
+              src={slide.image || '/placeholder.svg'}
+              alt={slide.title}
+              fill
+              className="object-cover"
+              priority={index === 0}
+            />
+          </div>
+
+          {/* Black overlay */}
+          <div className="absolute inset-0 bg-black/40" />
+
+          {/* Slide Text Content */}
           <div className="absolute inset-0 flex items-center justify-center text-center text-white">
             <div className="max-w-4xl px-4">
               <h1 className="mb-4 text-4xl font-bold md:text-6xl">{slide.title}</h1>
@@ -84,15 +91,15 @@ export default function HeroCarousel() {
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 transform rounded-full bg-white bg-opacity-20 p-2 transition-all hover:bg-opacity-30"
+        className="bg-opacity-20 hover:bg-opacity-30 absolute top-1/2 left-4 -translate-y-1/2 transform rounded-full bg-white p-2 transition-all"
       >
-        <ChevronLeft className="h-6 w-6 text-white" />
+        <ChevronLeft className="h-6 w-6 text-black" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 transform rounded-full bg-white bg-opacity-20 p-2 transition-all hover:bg-opacity-30"
+        className="bg-opacity-20 hover:bg-opacity-30 absolute top-1/2 right-4 -translate-y-1/2 transform rounded-full bg-white p-2 transition-all"
       >
-        <ChevronRight className="h-6 w-6 text-white" />
+        <ChevronRight className="h-6 w-6 text-black" />
       </button>
 
       {/* Dots Indicator */}
@@ -102,7 +109,7 @@ export default function HeroCarousel() {
             key={index}
             onClick={() => setCurrentSlide(index)}
             className={`h-3 w-3 rounded-full transition-all ${
-              index === currentSlide ? 'bg-white' : 'bg-white bg-opacity-50'
+              index === currentSlide ? 'bg-white' : 'bg-opacity-50 bg-white'
             }`}
           />
         ))}

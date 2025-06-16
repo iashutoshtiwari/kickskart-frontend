@@ -96,7 +96,7 @@ const dummyProducts: Product[] = [
       'https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/866bff0e-2091-4dbb-8653-ec0102941a2e/air-jordan-13-retro-shoes-xcK6vg.png',
     ],
     description:
-      "Michael Jordan earned the nickname 'Black Cat' for his superior athletic ability and prowess at both ends of the court. That nickname became the muse for the Tinker Hatfield-designed Air Jordan 13. Featuring a panther-paw-like sole and 'cat eye' holograph, Michael rode the mid-top shoe all the way to his 6th ring in '98, the last triumph of his legendary career. The Air Jordan 13 Retro brings back the stealthy, shrouded design with a fresh mix of colours and textures.",
+      "Michael Jordan earned the nickname 'Black Cat' for his superior athletic ability and prowess at both ends of the court. That nickname became the muse for the Tinker Hatfield-designed Air Jordan 13. Featuring a panther-paw-like sole and 'cat eye' holograph, Michael rode the mid-top shoe all the way to his 6th ring-3 in '98, the last triumph of his legendary career. The Air Jordan 13 Retro brings back the stealthy, shrouded design with a fresh mix of colours and textures.",
     labels: ['Just In', 'Highly Rated'],
     color: 'Black/Flint Grey/White/University Red',
     style: 'DJ5982-060',
