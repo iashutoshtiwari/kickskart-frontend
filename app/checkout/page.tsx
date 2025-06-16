@@ -3,20 +3,19 @@
 import type React from 'react';
 
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import type { RootState } from '../store/store';
-import { clearCart } from '../store/cartSlice';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { formatINR } from '@/lib/utils';
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const dispatch = useDispatch();
   const { items, total } = useSelector((state: RootState) => state.cart);
 
   const [shippingAddress, setShippingAddress] = useState({
@@ -38,9 +37,10 @@ export default function CheckoutPage() {
     cardName: '',
   });
 
-  const shipping = 10;
-  const tax = total * 0.08;
-  const finalTotal = total + shipping + tax;
+  const shipping = total >= 10000 ? 0 : 150;
+  const subTotal = total / (1 + 18 / 100);
+  const tax = subTotal * 0.18;
+  const finalTotal = total + shipping;
 
   const handleInputChange = (field: string, value: string) => {
     setShippingAddress((prev) => ({ ...prev, [field]: value }));
@@ -88,7 +88,6 @@ export default function CheckoutPage() {
     const orderId = Math.random().toString(36).substr(2, 9).toUpperCase();
 
     // Clear cart and redirect to confirmation
-    dispatch(clearCart());
     router.push(`/order-confirmation?orderId=${orderId}&total=${finalTotal.toFixed(2)}`);
   };
 
@@ -322,20 +321,20 @@ export default function CheckoutPage() {
                 <div className="space-y-2 border-t pt-4">
                   <div className="flex justify-between">
                     <span>Subtotal</span>
-                    <span>₹{total.toFixed(2)}</span>
+                    <span>{formatINR(subTotal)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Shipping</span>
-                    <span>₹{shipping.toFixed(2)}</span>
+                    <span>{formatINR(shipping)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Tax</span>
-                    <span>₹{tax.toFixed(2)}</span>
+                    <span>{formatINR(tax)}</span>
                   </div>
                   <div className="border-t pt-2">
                     <div className="flex justify-between text-lg font-bold">
                       <span>Total</span>
-                      <span>₹{finalTotal.toFixed(2)}</span>
+                      <span>{formatINR(finalTotal)}</span>
                     </div>
                   </div>
                 </div>

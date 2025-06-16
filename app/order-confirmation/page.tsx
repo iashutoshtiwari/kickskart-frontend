@@ -5,10 +5,13 @@ import { useEffect, useState } from 'react';
 import YouMayAlsoLike from '../components/YouMayAlsoLike';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, XCircle } from 'lucide-react';
+import { useDispatch } from 'react-redux';
+import { clearCart } from '../store/cartSlice';
 
 export default function OrderConfirmationPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const dispatch = useDispatch();
   const [orderStatus, setOrderStatus] = useState<'success' | 'failed' | 'loading'>('loading');
 
   const orderId = searchParams.get('orderId');
@@ -16,6 +19,9 @@ export default function OrderConfirmationPage() {
 
   useEffect(() => {
     // Simulate order processing
+    // Clear the cart when order confirmation loads
+    dispatch(clearCart());
+
     const timer = setTimeout(() => {
       // 90% success rate for demo
       const success = Math.random() > 0.1;
@@ -23,7 +29,7 @@ export default function OrderConfirmationPage() {
     }, 2000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [dispatch]);
 
   if (orderStatus === 'loading') {
     return (
@@ -76,7 +82,7 @@ export default function OrderConfirmationPage() {
             Order ID: <span className="font-mono font-bold">{orderId}</span>
           </p>
           <p className="text-gray-600">
-            Total: <span className="font-bold">${total}</span>
+            Total: <span className="font-bold">₹{total}</span>
           </p>
           <p className="mt-2 text-sm text-gray-600">
             You will receive a confirmation email shortly with tracking information.

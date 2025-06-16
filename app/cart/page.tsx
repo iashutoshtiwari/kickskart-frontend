@@ -8,15 +8,17 @@ import YouMayAlsoLike from '../components/YouMayAlsoLike';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Minus, Plus, Trash2 } from 'lucide-react';
+import { formatINR } from '@/lib/utils';
 
 export default function CartPage() {
   const router = useRouter();
   const dispatch = useDispatch();
   const { items, total } = useSelector((state: RootState) => state.cart);
 
-  const shipping = 10;
-  const tax = total * 0.08;
-  const finalTotal = total + shipping + tax;
+  const shipping = total >= 10000 ? 0 : 150;
+  const subTotal = total / (1 + 18 / 100);
+  const tax = subTotal * 0.18;
+  const finalTotal = total + shipping;
 
   const handleQuantityChange = (id: string, size: string, newQuantity: number) => {
     if (newQuantity === 0) {
@@ -64,7 +66,7 @@ export default function CartPage() {
                 <h3 className="mb-1 text-lg font-semibold">{item.name}</h3>
                 <p className="mb-2 text-gray-600">{item.category}</p>
                 <p className="mb-2 text-gray-600">Size: {item.size}</p>
-                <p className="font-bold">₹{item.price}</p>
+                <p className="font-bold">{formatINR(item.price)}</p>
               </div>
 
               <div className="flex flex-col items-end gap-4">
@@ -94,7 +96,7 @@ export default function CartPage() {
                 </button>
 
                 {/* Item Total */}
-                <p className="font-bold">₹{(item.price * item.quantity).toFixed(2)}</p>
+                <p className="font-bold">{formatINR(item.price * item.quantity)}</p>
               </div>
             </div>
           ))}
@@ -108,20 +110,20 @@ export default function CartPage() {
             <div className="mb-4 space-y-3">
               <div className="flex justify-between">
                 <span>Subtotal</span>
-                <span>₹{total.toFixed(2)}</span>
+                <span>{formatINR(subTotal)}</span>
               </div>
               <div className="flex justify-between">
                 <span>Shipping</span>
-                <span>₹{shipping.toFixed(2)}</span>
+                <span>{formatINR(shipping)}</span>
               </div>
               <div className="flex justify-between">
-                <span>Tax</span>
-                <span>₹{tax.toFixed(2)}</span>
+                <span>GST</span>
+                <span>{formatINR(tax)}</span>
               </div>
               <div className="border-t pt-3">
                 <div className="flex justify-between text-lg font-bold">
                   <span>Total</span>
-                  <span>₹{finalTotal.toFixed(2)}</span>
+                  <span>{formatINR(finalTotal)}</span>
                 </div>
               </div>
             </div>

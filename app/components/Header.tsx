@@ -12,6 +12,7 @@ import { Search, ShoppingBag, User, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import AuthModal from './AuthModal';
+import { formatINR } from '@/lib/utils';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,6 +26,7 @@ export default function Header() {
 
   const cartItemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const isCartPage = pathname === '/cart';
+  const isCheckoutPage = pathname === '/checkout';
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,7 +48,7 @@ export default function Header() {
       <header className="sticky top-0 z-50 border-b border-gray-200 bg-white">
         {/* Top bar */}
         <div className="bg-gray-100 px-4 py-2 text-center text-xs">
-          <span>Free shipping on orders over $50</span>
+          <span>{`Free shipping on orders over ${formatINR(10000, false)}`}</span>
         </div>
 
         {/* Main header */}
@@ -98,7 +100,7 @@ export default function Header() {
                   <User className="h-5 w-5" />
                 </Button>
 
-                {!isCartPage && (
+                {!(isCartPage || isCheckoutPage) && (
                   <Button
                     variant="ghost"
                     size="icon"
@@ -199,7 +201,7 @@ export default function Header() {
                   {user ? 'Sign Out' : 'Sign In'}
                 </Button>
 
-                {!isCartPage && (
+                {!(isCartPage || isCheckoutPage) && (
                   <Button
                     variant="ghost"
                     className="w-full justify-start"

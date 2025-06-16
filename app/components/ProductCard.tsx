@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Product } from '../store/productsSlice';
+import { formatINR } from '@/lib/utils';
 
 interface ProductCardProps {
   product: Product;
@@ -25,7 +26,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             {product.name}
           </h3>
           <p className="mb-2 text-sm text-gray-500">{product.category}</p>
-          <p className="text-lg font-bold">₹{product.price}</p>
+          <p className="text-lg font-bold">{formatINR(product.price, false)}</p>
         </div>
       </div>
     </Link>
