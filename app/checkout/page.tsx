@@ -328,7 +328,7 @@ export default function CheckoutPage() {
                     <span>{formatINR(shipping)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Tax</span>
+                    <span>GST</span>
                     <span>{formatINR(tax)}</span>
                   </div>
                   <div className="border-t pt-2">
